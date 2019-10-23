@@ -1,0 +1,10 @@
+/* error container */
+
+.error-container{
+    width:80%;
+    background: rgb(221, 187, 187);
+    padding:6px 12px;
+    color:rgb(204, 30, 30);
+    border-radius:5px;
+    margin: auto;
+  }

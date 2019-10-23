@@ -1,0 +1,54 @@
+/* navBar */
+.nav-bar{
+    width:100%;
+    background: black;
+    position: fixed;
+    top:0;
+    padding-left: 10px;
+    z-index: 1;
+  }
+  
+  .nav-bar-list{
+    list-style: none;
+    display: inline-block;
+    vertical-align:middle;
+    padding-left:4px;
+  }
+  
+  .nav-bar-item{
+    display:inline-block; 
+    vertical-align: middle; 
+    padding:3px;
+    padding-bottom:0px;
+    padding-top:0px;
+    width:10vw;
+    margin:0px;
+    margin-right:4px;
+    font-size: 1vw;
+  }
+  
+  .logo{
+    width:2vw;
+    margin-right:4px;
+  
+  }
+  
+  .nav-logo{
+    background: white;
+    border-radius: 50%;
+    width:2vw;
+  }
+  
+  .nav-bar-item-link{
+    color:white;
+    text-decoration: none;
+    /* padding:3px 6px; */
+    margin:0px;
+  }
+  
+  .nav-bar-item-link:hover{
+    color:black;
+    padding:6px 12px;
+    background: white;
+    border-radius: 2px;
+  }

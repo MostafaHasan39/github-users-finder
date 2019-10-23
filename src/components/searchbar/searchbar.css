@@ -1,0 +1,38 @@
+
+/* search */
+.search-form{
+    width:35%;
+    text-align: left;
+    margin:auto;
+    padding: 0;
+  }
+  
+  .search-text{
+    width:74%;
+    height:30px;
+    border-radius: 10px;
+    outline: none;
+    border:black 1px solid;
+    text-indent: 8px;
+    font-size: 1.1vw;
+  }
+  ::placeholder {
+    font-size: 1vw;
+  }
+  
+  .search-submit{
+    width:25%;
+    height:30px;
+    background: black;
+    color:white;
+    border-radius:5px;
+    font-size: 1vw;
+    outline: none;
+    float: right;
+    border:none;
+  }
+  
+  .search-submit:hover{
+    font-size: 1.1vw;
+    box-shadow: 3px 3px lightgray;
+  }

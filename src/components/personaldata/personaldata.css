@@ -1,0 +1,45 @@
+
+.personal-data-div{
+    position: relative;
+   }
+   .personal-data-div:after{
+     content:""; 
+     background: grey; 
+     position: absolute; 
+     bottom: 0; 
+     left: 35%; 
+     height: 2px; 
+     width: 30%;
+   }
+.profile-avatar{
+    width:30%;
+    height:30%;
+    border-radius:40%;
+    position: relative;
+    top:calc(-1 * ( 12vw / 2 ));
+    border:black 3px solid;
+    box-shadow: 3px 3px lightgray;
+  }
+  
+  .name-div{
+    margin-top:calc(-1* 14vw / 2);
+    font-size: 2vw;
+    font-weight: bolder;
+  }
+  
+  .location-div{
+    text-align: center;
+    display: inline-block;
+    width:50%;
+  }
+  .followers-div{
+    text-align: center;
+    display: inline-block;
+    width:50%;
+  }
+  .profile-content-p{
+    font-size: 1.3vw;
+    font-weight: bold;
+  }
+  
+  

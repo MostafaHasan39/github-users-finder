@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
 import './App.css';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
+
+
+import Navigation from './components/navbar/navbar';
+import Home from './components/home/home';
+import Profile from './components/profile/profile';
+
+class App extends Component<{},{keyWord:string}>{
+  constructor(props:any){
+    super(props);
+    this.state={
+      keyWord:""
+    }
+  }
+  
+  changeSearchKeyWord=(newKeyWord:string)=>{
+    this.setState({keyWord:newKeyWord});
+  }
+  render(){
+    return (
+      <div className="App">
+        
+        <BrowserRouter>
+        <Navigation/>
+        <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/profile' component={Profile} />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  } 
 }
 
-export default App;
+export default App
