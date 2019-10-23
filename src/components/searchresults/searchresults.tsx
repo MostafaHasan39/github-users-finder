@@ -10,7 +10,8 @@ import './searchresults.css';
 
 
 class SearchResults extends Component<{
-    keyWord: string
+    keyWord: string,
+    removeSearchKeyWord:()=>void
 }, {
     loading: boolean,
     errorState: boolean,
@@ -21,10 +22,10 @@ class SearchResults extends Component<{
     keyWord: string,
     itemsPerPage: number,
     currentPage: number,
-    totalNumberOfRecords: UserSearchResults["total_count"]
+    totalNumberOfRecords: UserSearchResults["total_count"],
 }> {
 
-    constructor(props: { keyWord: string }) {
+    constructor(props: { keyWord: string,removeSearchKeyWord:()=>void }) {
         super(props);
         this.state = {
             errorState: false,
@@ -36,7 +37,7 @@ class SearchResults extends Component<{
             keyWord: JSON.parse(localStorage.getItem('keyWord') || '""'),
             itemsPerPage: JSON.parse(localStorage.getItem('currentItemsPerPage') || "10"),
             currentPage: JSON.parse(localStorage.getItem('currentPage') || "1"),
-            totalNumberOfRecords: JSON.parse(localStorage.getItem('totalNumberOfRecords') || "0")
+            totalNumberOfRecords: JSON.parse(localStorage.getItem('totalNumberOfRecords') || "0"),
         }
     }
 
@@ -55,6 +56,7 @@ class SearchResults extends Component<{
     }
 
     fetchUsers = (keyWord: string, pageNumber: number, itemsPerPage: number) => {
+        this.setState({errorState:false});
         if (keyWord.length > 0) {
             localStorage.setItem("keyWord", JSON.stringify(keyWord))
             localStorage.setItem("users", JSON.stringify([]))
@@ -84,21 +86,38 @@ class SearchResults extends Component<{
                         }
                         // maximum rate for requests is reached
                         case 403: {
+                            this.props.removeSearchKeyWord();
                             this.setState({
                                 errorState: true,
                                 errorCode: response.status,
                                 errorMsg: "Maximum number of reuqests per minute is reached..Please try again within a minute..",
-                                loading: false
+                                loading: false,
+                                currentPage:1,
+                                keyWord:"",
+                                totalNumberOfRecords:0,
+                                itemsPerPage:10
                             });
                             break;
                         }
                         case 422: {
+                            this.props.removeSearchKeyWord();
                             this.setState({
                                 errorState: true,
                                 errorCode: response.status,
-                                errorMsg: "GitHub only allows first 1,000 record..",
-                                loading: false
+                                errorMsg: "GitHub only allows first 1,000 records to retreive from search...",
+                                loading: false,
+                                currentPage:1,
+                                keyWord:"",
+                                totalNumberOfRecords:0,
+                                itemsPerPage:10
                             });
+                            localStorage.setItem("keyWord", JSON.stringify(""));
+                            localStorage.setItem("users", JSON.stringify([]));
+                            localStorage.setItem("currentPage", JSON.stringify(1));
+                            localStorage.setItem("currentItemsPerPage", JSON.stringify(10));
+                            localStorage.setItem("totalNumberOfRecords", JSON.stringify(0));
+                            break;
+                            
                         }
                         default: {
                             this.setState({ errorState: true, errorCode: response.status, loading: false });
@@ -119,6 +138,7 @@ class SearchResults extends Component<{
     }
 
     clearSearchResults = () => {
+        this.props.removeSearchKeyWord();
         localStorage.removeItem("users");
         localStorage.removeItem("keyWord");
         localStorage.removeItem("currentItemsPerPage");

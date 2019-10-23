@@ -5,19 +5,26 @@ import './home.css';
 
 
 class Home extends Component<{},{keyWord:string}>{
-  state={
-    keyWord:""
+  constructor(){
+    super({});
+    this.state={
+        keyWord:""
+    }
   }
 
 submitSearch=(searchKeyWord:string)=>{
     this.setState({keyWord:searchKeyWord})   
 }
 
+removeSearchKeyWord=()=>{
+  this.setState({keyWord:""});
+}
+
   render(){
     return (
       <div className="home">
-          <SearchBar submitSearch={this.submitSearch}/>
-          <SearchResults keyWord={this.state.keyWord}/>       
+          <SearchBar submitSearch={this.submitSearch} keyWord={this.state.keyWord}/>
+          <SearchResults keyWord={this.state.keyWord} removeSearchKeyWord={this.removeSearchKeyWord}/>       
       </div>
     );
   } 

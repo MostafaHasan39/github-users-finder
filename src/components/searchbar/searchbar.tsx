@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './searchbar.css';
 
 class SearchBar extends Component<{
-
-    submitSearch: (keyWord: string) => void
+    submitSearch: (keyWord: string) => void,
+    keyWord:string
 }, { keyWord: string }> {
     state = {
-        keyWord: ""
+        keyWord: this.props.keyWord
     }
 
 
@@ -15,12 +15,8 @@ class SearchBar extends Component<{
         if (this.state.keyWord.length > 0)
             this.props.submitSearch(this.state.keyWord);
     }
-
-
-
     render() {
         return (
-            // <div className="search-div">
                 <form onSubmit={this.handleSearchSubmit} className="search-form">
                     <input type="text" className="search-text" placeholder=" Search a user name..." value={this.state.keyWord} onChange={(event: any) => {
                         this.setState({ keyWord: event.target.value })
@@ -28,8 +24,6 @@ class SearchBar extends Component<{
                     </input>
                     <button type="submit" className="search-submit">Submit</button>
                 </form>
-            // </div>
-
         )
     }
 }

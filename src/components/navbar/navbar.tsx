@@ -5,8 +5,7 @@ import './navbar.css';
 
 
 
-class Navigation extends Component {
-    render() {
+const Navigation:React.FC<{}> =()=>{
         return (
             <nav className="nav-bar">
                 <ul className="nav-bar-list">
@@ -21,8 +20,6 @@ class Navigation extends Component {
                 </ul>
             </nav>
         )
-    }
 }
-
 
 export default Navigation;
